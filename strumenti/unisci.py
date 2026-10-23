@@ -15,6 +15,12 @@ for n in notizie:
     if not re.match(r"^https?://", n.get("url", "")): errs.append(f"{n.get('id')}: url non valido")
     for l in ("1", "4", "7", "10"):
         if not ((n.get("en") or {}).get("livelli") or {}).get(l): errs.append(f"{n.get('id')}: manca inglese livello {l}")
+    if not n.get("il_punto"): errs.append(f"{n.get('id')}: manca il_punto")
+    if len(n.get("termini") or []) < 3: errs.append(f"{n.get('id')}: pochi termini spiegati")
+    l4 = (n.get("livelli") or {}).get("4", "")
+    if len(l4.split()) < 220: errs.append(f"{n.get('id')}: livello 4 troppo corto ({len(l4.split())} parole, servono 250-350)")
+    for lab in ("Cosa è successo:", "Perché:", "Cosa cambia:", "Un esempio:"):
+        if lab not in l4: errs.append(f"{n.get('id')}: livello 4 senza '{lab}'")
 ids = [n["id"] for n in notizie]
 if len(ids) != len(set(ids)): errs.append("id duplicati")
 doc = {"data": day, "generato": gen, "notizie": notizie,
