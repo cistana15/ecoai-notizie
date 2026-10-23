@@ -1,43 +1,47 @@
-# Schema notizie EcoAI (JSON, UTF-8, italiano)
+# Schema notizie EcoAI v2 (JSON, UTF-8)
+
+Lettore: Matteo, 25 anni, Milano, lavora nella compliance finanziaria. Intelligente ma NON esperto di finanza o tecnologia: sigle e gergo lo bloccano. Vuole capire IL PUNTO: cosa è successo, perché, cosa cambia, con esempi.
 
 Ogni notizia:
 {
-  "id": "ai-01",                       // ai-01..ai-10 / eco-01..eco-10
+  "id": "ai-01",                        // ai-01..ai-10 / eco-01..eco-10
   "sezione": "ai" | "economia",
-  "tag": "Modelli" ,                   // breve categoria (es. Modelli, Chip, Regole, Big Tech, Startup, Ricerca | Mercati, Banche centrali, Inflazione, Lavoro, Energia, Aziende, Italia, Europa, Cripto)
-  "titolo": "...",                      // titolo chiaro in italiano, max ~90 caratteri, niente clickbait
-  "sottotitolo": "...",                 // 1 frase
-  "fonte": "Reuters",                   // testata della fonte principale
-  "url": "https://...",                 // link all'articolo originale (verificato che esiste)
-  "data": "2026-10-23",                 // data di pubblicazione della fonte
-  "importanza": 1-5,                    // 5 = notizia del giorno
-  "livelli": {
-    "1":  "...",  // come a un ragazzo di 12 anni: 2-4 frasi, parole semplici, un esempio concreto/paragone di vita quotidiana
-    "4":  "...",  // lettore curioso: 1 paragrafo (~80-120 parole), chi/cosa/quando/perché, termini tecnici spiegati tra parentesi
-    "7":  "...",  // lettore informato: 2-3 paragrafi (~200 parole), contesto, numeri, conseguenze per mercati/aziende/persone
-    "10": "..."   // esperto: 4-6 paragrafi (~400 parole), dettagli tecnici/finanziari, contesto storico, rischi e scenari, punti ancora incerti. Paragrafi separati da \n\n
+  "tag": "Modelli",                     // breve categoria in italiano
+  "titolo": "...",                      // CHIARO: dice cosa è successo con parole comuni, niente sigle o gergo non spiegati. Max ~90 caratteri.
+                                        //   NO: "Meta, impegni per 825 mld e il titolo cade"  SÌ: "Meta spenderà cifre enormi per l'AI e gli investitori vendono le sue azioni"
+  "il_punto": "...",                    // 1-2 frasi, la sostanza: "In pratica: ..." cosa significa davvero e perché conta
+  "sottotitolo": "...",                 // 1 frase di contesto
+  "fonte": "Reuters", "url": "https://...articolo", "data": "AAAA-MM-GG", "importanza": 1-5,
+  "immagine": "",                       // facoltativo: URL og:image solo se visto davvero
+  "livelli": {                          // stessa notizia, profondità crescente. OGNI livello deve far capire: cosa è successo, PERCHÉ (cause), COSA CAMBIA (conseguenze), un ESEMPIO concreto (meglio se con numeri)
+    "1":  "...",   // 12 anni: 80-120 parole, frasi brevi, un paragone di vita quotidiana, zero sigle
+    "4":  "...",   // lettore curioso: LUNGO COME LA NOTIZIA (250-350 parole). 4 paragrafi che iniziano esattamente con
+                   //   "Cosa è successo: ", "Perché: ", "Cosa cambia: ", "Un esempio: ". Ogni termine tecnico o sigla spiegato tra parentesi la prima volta.
+    "7":  "...",   // informato: 400-500 parole, stessi 4 paragrafi + "Il contesto: " (prima di "Cosa cambia"). Termini spiegati tra parentesi la prima volta.
+    "10": "..."    // esperto: 550-750 parole, paragrafi con etichette "Cosa è successo: ", "Il contesto: ", "Perché: ", "I numeri: ", "Cosa cambia: ", "Rischi e scenari: ", "Cosa resta incerto: "
+  },                                    // paragrafi separati da \n\n; ogni paragrafo inizia con l'etichetta seguita da ": "
+  "termini": [ {"termine": "Brent", "spiegazione": "Il petrolio estratto nel Mare del Nord, usato come prezzo di riferimento in Europa."} ],
+                                        // TUTTE le sigle e i termini tecnici che compaiono nei testi (anche titolo), 4-12 per notizia. "termine" scritto ESATTAMENTE come compare nel testo. Spiegazione in 1-2 frasi semplici.
+  "perche_conta": "...",                // 1 frase: perché dovrebbe interessare a Matteo (soldi, lavoro, vita quotidiana, carriera)
+  "numeri": [ {"label": "Prezzo del Brent", "valore": "116,7 $"} ],   // 0-3, solo dalle fonti
+  "chi": [ {"nome": "...", "tipo": "azienda"|"persona"|"istituzione", "url": "https://..."} ],
+  "approfondimenti": [ {"titolo": "...", "url": "https://..."} ],
+  "en": {                               // VERSIONE INGLESE (Matteo impara l'inglese): stessi fatti, stessa struttura
+    "titolo": "...", "il_punto": "...", "sottotitolo": "...", "perche_conta": "...",
+    "livelli": {"1": "...", "4": "...", "7": "...", "10": "..."},   // 1 e 4 inglese semplice A2-B1; 7 e 10 B2. Etichette: "What happened: ", "Why: ", "The context: ", "What changes: ", "An example: ", "The numbers: ", "Risks and scenarios: ", "Still unclear: "
+    "termini": [ {"termine": "...", "spiegazione": "..."} ]          // termini come compaiono nel testo inglese, spiegati in inglese semplice
   },
-  "perche_conta": "...",                // 1 frase: perché dovrebbe interessarmi
-  "numeri": [ {"label": "Investimento", "valore": "40 mld $"} ],   // 0-3 numeri chiave, SOLO se presenti nelle fonti
-  "chi": [ {"nome": "Nvidia", "tipo": "azienda"|"persona"|"istituzione", "url": "https://..."} ], // 1-4 attori con link (sito ufficiale, Wikipedia o profilo LinkedIn pubblico)
-  "immagine": "https://...",          // FACOLTATIVO: URL della foto principale dell'articolo, solo se lo vedi davvero (og:image). Se manca, il sito la recupera da solo dall'articolo
-  "en": {                               // VERSIONE INGLESE per un italiano che impara l'inglese
-    "titolo": "...", "sottotitolo": "...", "perche_conta": "...",
-    "livelli": {"1": "...", "4": "...", "7": "...", "10": "..."}   // stessi fatti dell'italiano; 1 e 4 inglese semplice (CEFR A2-B1, frasi brevi), 7 e 10 inglese chiaro B2. Citazioni: se la fonte è in inglese usa le parole ESATTE della fonte, altrimenti discorso indiretto senza virgolette
-  },
-  "glossario": [ {"en": "funding round", "it": "round di finanziamento"} ],  // 5-7 parole/espressioni utili presenti nel testo inglese
-  "approfondimenti": [ {"titolo": "...", "url": "https://..."} ]  // 1-3 link extra (altre fonti, comunicato ufficiale, paper)
+  "glossario": [ {"en": "funding round", "it": "round di finanziamento"} ]   // 5-7 parole inglesi utili dal testo inglese
 }
 
 REGOLE FERREE
-- Solo fatti presenti nelle fonti che hai letto. Nessun numero, data, nome o citazione inventati. Se un dato non è certo, non metterlo.
-- I livelli 1/4/7/10 raccontano la STESSA notizia con profondità diversa; il 10 può aggiungere contesto generale noto e stabile, ma ogni fatto specifico deve venire dalle fonti.
-- Italiano semplice e corretto. Livello 1 senza gergo.
-- Notizie delle ultime 24-48 ore (oggi è sabato 24 ottobre 2026; vanno bene notizie del 22-23 ottobre 2026, eccezionalmente fino al 20 se molto importanti).
-- url deve essere la pagina dell'articolo, non la home della testata.
+- Solo fatti presenti nelle fonti lette con WebFetch. Nessun numero, data, nome o citazione inventati. Cause e conseguenze: quelle scritte nelle fonti; se aggiungi un ragionamento tuo, dillo ("Questo significa che...", "Probabilmente..."). Se un dato non è certo, non metterlo.
+- Spiegazioni di concetti generali (cos'è uno spread, un'IPO, un modello linguistico) possono venire dalla conoscenza generale stabile.
+- Citazioni tra virgolette solo se copiate esattamente dalla fonte (in inglese le parole originali; in italiano traduzione fedele dichiarata o discorso indiretto).
+- Notizie delle ultime 24-48 ore. url = pagina dell'articolo, non la home.
 
-# Altri file della ricerca (stessa cartella)
-numeri.json  -> {"aggiornato":"chiusura di <giorno>", "voci":[{"nome","valore","variazione","nota","nota_en","fonte","url"}]}
-   Voci: FTSE MIB, Euro Stoxx 50, S&P 500, Nasdaq Composite, euro/dollaro, Brent, oro, Bitcoin, spread BTP-Bund, BTP 10 anni. Solo valori verificati con link; meglio ometterli che sbagliare.
-aziende.json -> {"titolo":"...","voci":[{"nome","settore":"AI"|"Economia","cosa_succede","cosa_succede_en","numero","url_notizia","sito","linkedin"}]}  6-8 aziende, linkedin solo se la pagina è stata aperta e verificata, altrimenti "".
-voci.json    -> {"voci":[{"autore","ruolo","tipo","titolo","titolo_en","sintesi","sintesi_en","perche_leggerlo","perche_leggerlo_en","url","data","profilo"}]}  4-6 opinioni/riflessioni pubbliche (post LinkedIn pubblici, blog, newsletter, editoriali) degli ultimi 10 giorni; nessuna citazione non copiata dalla pagina.
+# Altri file della ricerca
+numeri.json  -> {"aggiornato":"chiusura di <giorno>", "voci":[{"nome","valore","variazione","nota","nota_en","spiegazione","fonte","url"}]}
+   "spiegazione": 1 frase semplice su cos'è (es. "FTSE MIB: l'indice delle 40 aziende più grandi della Borsa di Milano"). Voci: FTSE MIB, Euro Stoxx 50, S&P 500, Nasdaq Composite, euro/dollaro, Brent, oro, Bitcoin, spread BTP-Bund, BTP 10 anni. Solo valori verificati con link.
+aziende.json -> {"titolo":"...","voci":[{"nome","settore":"AI"|"Economia","cosa_fa","cosa_succede","cosa_succede_en","numero","url_notizia","sito","linkedin"}]}  6-8 aziende; "cosa_fa" = 1 frase su cosa fa l'azienda; linkedin solo se verificato, altrimenti "".
+voci.json    -> {"voci":[{"autore","ruolo","tipo","titolo","titolo_en","sintesi","sintesi_en","perche_leggerlo","perche_leggerlo_en","url","data","profilo"}]}  4-6 opinioni pubbliche degli ultimi 10 giorni.
