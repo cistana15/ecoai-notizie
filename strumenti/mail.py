@@ -11,6 +11,12 @@ C = dict(bg="#EDF1F6", card="#FFFFFF", ink="#14213D", fog="#4A5672", line="#CDD6
 MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"]
 GIORNI = ["lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"]
 
+def en_block(n):
+    t = ((n.get("en") or {}).get("livelli") or {}).get("1")
+    if not t: return ""
+    return (f'<div style="{F}font-size:11.5px;font-weight:800;color:{C["fog"]};margin-top:10px">IN ENGLISH</div>'
+            f'<div style="{S}font-size:14.5px;line-height:1.5;color:{C["fog"]};font-style:italic">{e(t)}</div>')
+
 def item(n):
     ai = n["sezione"] == "ai"
     col, soft = (C["ai"], C["aisoft"]) if ai else (C["eco"], C["ecosoft"])
@@ -20,6 +26,7 @@ def item(n):
 <span style="{F}font-size:12.5px;color:{C["fog"]}">&nbsp;{e(n["fonte"])}</span>
 <div style="{F}font-size:18px;line-height:1.25;font-weight:800;color:{C["ink"]};margin:8px 0 6px">{e(n["titolo"])}</div>
 <div style="{S}font-size:15.5px;line-height:1.55;color:{C["ink"]}">{e(n["livelli"]["1"])}</div>
+{en_block(n)}
 <div style="{F}font-size:13.5px;margin-top:10px"><a href="{SITO}/#{n["sezione"]}" style="color:{col};font-weight:700;text-decoration:none">Approfondisci su EcoAI</a>
 &nbsp;&nbsp;<a href="{e(n["url"])}" style="color:{C["fog"]};text-decoration:underline">Articolo originale</a></div>
 </td></tr></table></td></tr>'''

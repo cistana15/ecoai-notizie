@@ -13,6 +13,8 @@ for n in notizie:
     for l in ("1", "4", "7", "10"):
         if not (n.get("livelli") or {}).get(l): errs.append(f"{n.get('id')}: manca livello {l}")
     if not re.match(r"^https?://", n.get("url", "")): errs.append(f"{n.get('id')}: url non valido")
+    for l in ("1", "4", "7", "10"):
+        if not ((n.get("en") or {}).get("livelli") or {}).get(l): errs.append(f"{n.get('id')}: manca inglese livello {l}")
 ids = [n["id"] for n in notizie]
 if len(ids) != len(set(ids)): errs.append("id duplicati")
 doc = {"data": day, "generato": gen, "notizie": notizie,

@@ -20,6 +20,12 @@ Ogni notizia:
   "perche_conta": "...",                // 1 frase: perché dovrebbe interessarmi
   "numeri": [ {"label": "Investimento", "valore": "40 mld $"} ],   // 0-3 numeri chiave, SOLO se presenti nelle fonti
   "chi": [ {"nome": "Nvidia", "tipo": "azienda"|"persona"|"istituzione", "url": "https://..."} ], // 1-4 attori con link (sito ufficiale, Wikipedia o profilo LinkedIn pubblico)
+  "immagine": "https://...",          // FACOLTATIVO: URL della foto principale dell'articolo, solo se lo vedi davvero (og:image). Se manca, il sito la recupera da solo dall'articolo
+  "en": {                               // VERSIONE INGLESE per un italiano che impara l'inglese
+    "titolo": "...", "sottotitolo": "...", "perche_conta": "...",
+    "livelli": {"1": "...", "4": "...", "7": "...", "10": "..."}   // stessi fatti dell'italiano; 1 e 4 inglese semplice (CEFR A2-B1, frasi brevi), 7 e 10 inglese chiaro B2. Citazioni: se la fonte è in inglese usa le parole ESATTE della fonte, altrimenti discorso indiretto senza virgolette
+  },
+  "glossario": [ {"en": "funding round", "it": "round di finanziamento"} ],  // 5-7 parole/espressioni utili presenti nel testo inglese
   "approfondimenti": [ {"titolo": "...", "url": "https://..."} ]  // 1-3 link extra (altre fonti, comunicato ufficiale, paper)
 }
 
@@ -31,7 +37,7 @@ REGOLE FERREE
 - url deve essere la pagina dell'articolo, non la home della testata.
 
 # Altri file della ricerca (stessa cartella)
-numeri.json  -> {"aggiornato":"chiusura di <giorno>", "voci":[{"nome","valore","variazione","nota","fonte","url"}]}
+numeri.json  -> {"aggiornato":"chiusura di <giorno>", "voci":[{"nome","valore","variazione","nota","nota_en","fonte","url"}]}
    Voci: FTSE MIB, Euro Stoxx 50, S&P 500, Nasdaq Composite, euro/dollaro, Brent, oro, Bitcoin, spread BTP-Bund, BTP 10 anni. Solo valori verificati con link; meglio ometterli che sbagliare.
-aziende.json -> {"titolo":"...","voci":[{"nome","settore":"AI"|"Economia","cosa_succede","numero","url_notizia","sito","linkedin"}]}  6-8 aziende, linkedin solo se la pagina è stata aperta e verificata, altrimenti "".
-voci.json    -> {"voci":[{"autore","ruolo","tipo","titolo","sintesi","perche_leggerlo","url","data","profilo"}]}  4-6 opinioni/riflessioni pubbliche (post LinkedIn pubblici, blog, newsletter, editoriali) degli ultimi 10 giorni; nessuna citazione non copiata dalla pagina.
+aziende.json -> {"titolo":"...","voci":[{"nome","settore":"AI"|"Economia","cosa_succede","cosa_succede_en","numero","url_notizia","sito","linkedin"}]}  6-8 aziende, linkedin solo se la pagina è stata aperta e verificata, altrimenti "".
+voci.json    -> {"voci":[{"autore","ruolo","tipo","titolo","titolo_en","sintesi","sintesi_en","perche_leggerlo","perche_leggerlo_en","url","data","profilo"}]}  4-6 opinioni/riflessioni pubbliche (post LinkedIn pubblici, blog, newsletter, editoriali) degli ultimi 10 giorni; nessuna citazione non copiata dalla pagina.
