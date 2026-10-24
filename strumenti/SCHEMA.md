@@ -45,3 +45,15 @@ numeri.json  -> {"aggiornato":"chiusura di <giorno>", "voci":[{"nome","valore","
    "spiegazione": 1 frase semplice su cos'è (es. "FTSE MIB: l'indice delle 40 aziende più grandi della Borsa di Milano"). Voci: FTSE MIB, Euro Stoxx 50, S&P 500, Nasdaq Composite, euro/dollaro, Brent, oro, Bitcoin, spread BTP-Bund, BTP 10 anni. Solo valori verificati con link.
 aziende.json -> {"titolo":"...","voci":[{"nome","settore":"AI"|"Economia","cosa_fa","cosa_succede","cosa_succede_en","numero","url_notizia","sito","linkedin"}]}  6-8 aziende; "cosa_fa" = 1 frase su cosa fa l'azienda; linkedin solo se verificato, altrimenti "".
 voci.json    -> {"voci":[{"autore","ruolo","tipo","titolo","titolo_en","sintesi","sintesi_en","perche_leggerlo","perche_leggerlo_en","url","data","profilo"}]}  4-6 opinioni pubbliche degli ultimi 10 giorni.
+
+# Podcast del giorno (podcast.json)
+{"titolo": "...", "titolo_en": "...",
+ "capitoli": [ {"titolo": "Apertura", "testo": "...", "titolo_en": "Opening", "testo_en": "..."} , ...]}
+- Un discorso che FILA, come un buon podcast di un solo conduttore: apertura con il tema del giorno, poi 4-6 capitoli che collegano le notizie tra loro (AI ed economia si intrecciano: es. spese per l'AI → Borsa → petrolio → tassi → famiglie), una riflessione finale con i pensieri delle "voci" (attribuiti per nome: "Secondo l'economista X...") e una chiusura con "cosa tenere d'occhio domani".
+- Testo scritto PER ESSERE ASCOLTATO: frasi brevi, niente sigle (o spiegate a voce), numeri arrotondati e detti a parole ("circa 117 dollari al barile"), domande retoriche, passaggi tra capitoli ("E qui arriva il punto interessante..."). Niente elenchi puntati, niente parentesi, niente URL.
+- Durata: 1.100-1.500 parole in italiano (circa 8-10 minuti). Versione inglese "testo_en" semplice (B1), stessa struttura, 900-1.200 parole.
+- Solo fatti presenti nelle notizie e nelle voci del giorno. Le riflessioni sono ragionamenti dichiarati ("Io la vedo così...", "Una possibile lettura è...").
+
+# Attualità (attualita.json) — il minimo per parlare con i colleghi
+{"voci": [ {"categoria": "Italia"|"Mondo"|"Politica"|"Sport"|"Cultura"|"Tecnologia"|"Meteo", "titolo": "...", "in_breve": "1-2 frasi semplici", "titolo_en": "...", "in_breve_en": "...", "fonte": "ANSA", "url": "https://..."} ]}
+- 5-7 fatti del giorno (non AI/economia, già coperti), i più discussi in Italia: almeno 2 Italia, 1-2 mondo, 1 sport. Verificati su fonte aperta con WebFetch.
