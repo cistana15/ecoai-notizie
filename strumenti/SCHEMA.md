@@ -61,3 +61,6 @@ voci.json    -> {"voci":[{"autore","ruolo","tipo","titolo","titolo_en","sintesi"
 # Attualità (attualita.json) — il minimo per parlare con i colleghi
 {"voci": [ {"categoria": "Italia"|"Mondo"|"Politica"|"Sport"|"Cultura"|"Tecnologia"|"Meteo", "titolo": "...", "in_breve": "1-2 frasi semplici", "titolo_en": "...", "in_breve_en": "...", "fonte": "ANSA", "url": "https://..."} ]}
 - 5-7 fatti del giorno (non AI/economia, già coperti), i più discussi in Italia: almeno 2 Italia, 1-2 mondo, 1 sport. Verificati su fonte aperta con WebFetch.
+
+# Verifica (campo "verifica" del file del giorno, scritto dal controllo dei fatti)
+{"controllati": 180, "corretti": 3, "rimossi": 1, "note": ["eco-04: rendimento corretto da 5,14% a 5,12% (Reuters)"]}

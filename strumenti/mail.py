@@ -77,6 +77,11 @@ def attualita(d):
             f'<tr><td><table width="100%" cellpadding="0" cellspacing="0" style="background:{C["card"]};border:1px solid {C["line"]};border-radius:16px"><tr><td style="padding:6px 16px">'
             f'<table width="100%" cellpadding="0" cellspacing="0">{rows}</table></td></tr></table></td></tr>')
 
+def verifica(d):
+    v = d.get("verifica") or {}
+    if not v.get("controllati"): return ""
+    return f' Verifica dei fatti: {v["controllati"]} controllati, {v.get("corretti", 0)} corretti, {v.get("rimossi", 0)} rimossi.'
+
 def build(d):
     y, m, g = map(int, d["data"].split("-"))
     import datetime
@@ -101,7 +106,7 @@ def build(d):
 {attualita(d)}
 <tr><td align="center" style="padding:22px 0 0"><table cellpadding="0" cellspacing="0"><tr><td style="background:{C["ink"]};border-radius:99px">
 <a href="{SITO}" style="display:inline-block;padding:14px 26px;{F}font-size:15px;font-weight:800;color:#fff;text-decoration:none">Apri EcoAI: tutte le notizie, livelli 1-10</a></td></tr></table>
-<div style="{F}font-size:12px;color:{C["fog"]};margin-top:12px">Ogni notizia ha il link alla fonte originale.</div></td></tr>
+<div style="{F}font-size:12px;color:{C["fog"]};margin-top:12px">Ogni notizia ha il link alla fonte originale.{verifica(d)}</div></td></tr>
 </table></td></tr></table></td></tr></table></body></html>'''
     subject = f"EcoAI · {data} · {top['titolo']}"
     text = f"EcoAI, {data}\n\n" + "\n\n".join(f"{n['titolo']}\n{n['livelli']['1']}\n{n['url']}" for n in ai + eco) + f"\n\nTutte le notizie: {SITO}"
