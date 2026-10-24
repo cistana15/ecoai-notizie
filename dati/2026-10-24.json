@@ -4011,5 +4011,117 @@
     "perche_leggerlo_en": "It uses data to take apart the idea that multiplying agents is enough to get a superintelligence."
    }
   ]
+ },
+ "podcast": {
+  "titolo": "L'intelligenza artificiale costa tantissimo: chi paga il conto?",
+  "titolo_en": "AI costs a fortune: who pays the bill?",
+  "capitoli": [
+   {
+    "titolo": "Apertura",
+    "testo": "Buongiorno Matteo, e buon sabato. Partiamo da un piccolo gioco. Immagina di guadagnare 1.700 euro al mese. E immagina di spenderne 1.810 per rifare casa. Alla fine del mese ti mancano 110 euro, e li devi coprire con i risparmi o con un prestito. Ecco, questa settimana un'azienda enorme ha fatto esattamente così, solo con qualche zero in più. Quell'azienda è Meta, la casa di Facebook, Instagram e WhatsApp. E la sua storia ci porta dritti alla domanda di oggi: l'intelligenza artificiale costa tantissimo. Ma chi paga il conto? Le aziende, gli investitori, i lavoratori, o un po' tutti noi? Seguiamo i soldi.",
+    "titolo_en": "Opening",
+    "testo_en": "Good morning Matteo, and happy Saturday. Let's start with a small game. Imagine you earn 1,700 euros a month, and you spend 1,810 to renovate your home. At the end of the month you are 110 euros short, so you use your savings or take a loan. This week a huge company did exactly that, just with more zeros. That company is Meta, the owner of Facebook, Instagram and WhatsApp. Its story leads us to today's question: artificial intelligence costs a fortune. But who pays the bill? Let's follow the money."
+   },
+   {
+    "titolo": "Meta, il conto che non torna",
+    "testo": "Mercoledì Meta ha presentato i conti del trimestre. I ricavi sono stati di circa 65 miliardi di dollari, il 26 per cento in più di un anno fa, sopra le attese. Ma nello stesso periodo Meta ha speso quasi 35 miliardi per costruire centri di calcolo e comprare chip. E l'attività le ha portato in cassa poco meno di 33 miliardi. Risultato: il flusso di cassa libero, cioè i soldi che restano dopo spese e investimenti, è andato sotto zero di circa 2 miliardi. È il nostro esempio dei 110 euro, in grande. E non finisce qui. Il giorno dopo, secondo Bloomberg, è emerso che Meta ha impegni di spesa futura per circa 825 miliardi di dollari, soprattutto affitti di centri dati, energia e contratti per la potenza di calcolo. Quest'anno ha già chiesto in prestito quasi 25 miliardi con le obbligazioni. Ecco la novità vera: per la prima volta la corsa all'intelligenza artificiale non si paga solo con i profitti, ma anche con il debito. La Borsa ha risposto subito. Giovedì il titolo Meta è sceso di oltre il 7 per cento, e il Nasdaq, l'indice americano pieno di aziende tecnologiche, ha perso il 2,6 per cento. Fino a poco tempo fa il mercato premiava chi annunciava più investimenti. Adesso comincia a chiedere: bene, ma quando arrivano i guadagni?",
+    "titolo_en": "Meta, the numbers that don't add up",
+    "testo_en": "On Wednesday Meta presented its quarterly results. Revenue was about 65 billion dollars, 26 percent more than a year ago. Very good. But Meta spent almost 35 billion on data centres and chips, and its business brought in just under 33 billion in cash. So its free cash flow, the money left after costs and investments, went below zero by about 2 billion. It is our 110 euro example, on a giant scale. There is more. According to Bloomberg, Meta has future spending commitments of about 825 billion dollars, and this year it has already borrowed almost 25 billion. This is the real news: the AI race is now paid not only with profits, but also with debt. On Thursday Meta's shares fell by more than 7 percent, and the Nasdaq, the American tech index, lost 2.6 percent. Until recently, the market liked big investment plans. Now it asks: when do the profits arrive?"
+   },
+   {
+    "titolo": "OpenAI abbassa il prezzo",
+    "testo": "E qui arriva il punto interessante, perché la stessa domanda se la stanno facendo gli investitori privati. OpenAI, l'azienda di ChatGPT, sta per raccogliere fino a 30 miliardi di dollari. Ma a settembre si parlava di un valore di 1.400 miliardi, e adesso il prezzo è sceso a 1.250. Centocinquanta miliardi in meno, dopo le resistenze di alcuni investitori. Il prezzo di OpenAI è il termometro di tutto il boom, e il termometro si è raffreddato. C'è anche una gara di tempi: secondo Yahoo Finance, OpenAI vuole chiudere prima che la rivale Anthropic presenti i documenti per entrare in Borsa, attesi a novembre. Qui ci aiuta Aswath Damodaran, professore alla New York University ed esperto di valutazioni. Nel suo ultimo articolo spiega che queste giovani aziende non hanno ancora utili, quindi vengono prezzate con metriche semplici, come il fatturato annualizzato. Il problema, dice, è che queste metriche non sono standard e si possono gonfiare. Secondo lui, quando OpenAI ha cambiato il modo di contare i ricavi, il suo fatturato annualizzato è sceso da circa 70 a circa 50 miliardi. Stessa azienda, numero diverso. Per questo lui non si schiera e aspetta il prospetto ufficiale. Una lezione utile anche per te: quando senti un numero gigante, chiediti sempre come è stato calcolato.",
+    "titolo_en": "OpenAI lowers its price",
+    "testo_en": "Private investors are asking the same question. OpenAI, the company behind ChatGPT, wants to raise up to 30 billion dollars. In September people talked about a value of 1,400 billion. Now the price is 1,250 billion, after some investors pushed back. OpenAI's price is the thermometer of the whole AI boom, and the thermometer has cooled a little. Professor Aswath Damodaran, a valuation expert at New York University, helps us here. He explains that young AI companies have no profits yet, so people price them with simple numbers, like annualised revenue. But these numbers are not standard and can be inflated. In his view, when OpenAI changed the way it counts revenue, the figure fell from about 70 to about 50 billion. Same company, different number. A useful lesson: when you hear a giant number, always ask how it was calculated."
+   },
+   {
+    "titolo": "Da Wall Street a Milano, passando per il petrolio",
+    "testo": "I dubbi però non restano in America. Piazza Affari ha chiuso la settimana in calo del 2,6 per cento. Hanno pesato i timori sull'intelligenza artificiale, ma anche la guerra e il petrolio. Ed eccoci al secondo grande pezzo della storia. Venerdì il Brent, il petrolio di riferimento per l'Europa, ha chiuso a quasi 117 dollari al barile: più 3 per cento in un giorno, circa più 6 in una settimana, il livello più alto da fine aprile. Il motivo sono gli attacchi dei ribelli Houthi in Arabia Saudita e alle navi nello Stretto di Hormuz. Il mercato teme che arrivi meno petrolio. Chi ci guadagna? Chi lo estrae: Eni ha più che raddoppiato l'utile del trimestre, a 2,8 miliardi, e ha dato un dividendo extra ai soci. Chi ci perde? Un po' tutti gli altri, perché il petrolio caro passa nei carburanti, nei trasporti e alla fine nei prezzi. E intanto l'Italia ha dovuto offrire interessi un po' più alti: giovedì lo spread con la Germania, cioè la differenza tra gli interessi dei titoli di Stato italiani e tedeschi, è salito fino a 128 punti, per poi tornare a 125.",
+    "titolo_en": "From Wall Street to Milan, via oil",
+    "testo_en": "These doubts do not stay in America. The Milan Stock Exchange lost 2.6 percent this week, hit by fears about AI, but also by war and oil. On Friday Brent, the reference oil price for Europe, closed at almost 117 dollars a barrel, the highest since late April. The reason is attacks by the Houthi rebels in Saudi Arabia and on ships in the Strait of Hormuz. Who wins? Oil producers: Eni more than doubled its quarterly profit, to 2.8 billion, and paid an extra dividend. Who loses? Almost everyone else, because expensive oil goes into fuel, transport and prices. Italy also had to pay a bit more to borrow: the spread with Germany rose to 128 points on Thursday, then went back to 125."
+   },
+   {
+    "titolo": "Tassi, mutui e un'Europa che rallenta",
+    "testo": "E qui il conto arriva davvero a casa nostra. Petrolio caro vuol dire inflazione più alta. E con l'inflazione alta, le banche centrali non abbassano i tassi. Nell'area euro l'inflazione è vicina al doppio dell'obiettivo del 2 per cento. Allo stesso tempo l'economia rallenta: il sondaggio mensile tra le imprese dei Paesi dell'euro è sceso a 51,9, il livello più basso da giugno. Sopra 50 vuol dire crescita, quindi cresciamo ancora, ma più piano del previsto. La Francia è addirittura sotto 50. Per questo la prossima settimana sia la Fed, la banca centrale americana, sia la Banca centrale europea dovrebbero restare ferme. Ma diversi analisti si aspettano un nuovo rialzo a dicembre. Cosa significa in pratica? Prendiamo un mutuo variabile ipotetico da 150.000 euro in 25 anni al 3,5 per cento: la rata è di circa 751 euro. Con un quarto di punto in più, sale a circa 771. Venti euro al mese, circa 240 all'anno. Ecco una prima risposta alla nostra domanda: una parte del conto la pagano le famiglie, attraverso benzina, prezzi e rate.",
+    "titolo_en": "Rates, mortgages and a slowing Europe",
+    "testo_en": "Now the bill reaches our homes. Expensive oil means higher inflation, and with high inflation central banks do not cut rates. In the euro area inflation is close to double the 2 percent target. At the same time the economy is slowing: the monthly business survey fell to 51.9, the lowest since June. Above 50 means growth, so we still grow, but more slowly. France is below 50. So next week the Fed, the American central bank, and the European Central Bank should keep rates where they are, but several analysts expect a rise in December. A simple example: an imaginary variable mortgage of 150,000 euros over 25 years at 3.5 percent costs about 751 euros a month. With a quarter point more, it costs about 771. That is 240 euros more a year. So families pay part of the bill too."
+   },
+   {
+    "titolo": "E il lavoro?",
+    "testo": "Poi c'è il lavoro, e qui la storia ti tocca da vicino. Questa settimana Barclays, una grande banca inglese, ha annunciato circa 5.000 tagli, il 60 per cento negli uffici di supporto come informatica e amministrazione. American Express taglierà il 5 per cento dei dipendenti nel mondo, circa 3.850 persone su 77.000. Entrambe parlano di efficienza e di soldi da investire in automazione e intelligenza artificiale. Attenzione però: nessuna delle due dice quanti posti verranno davvero sostituiti da un'intelligenza artificiale. L'economista Paul Krugman propone una lettura originale. Il problema, dice, non è solo il robot che ti ruba il posto. È dove vanno i soldi. Citando uno studio, scrive che un grande campus di calcolo per l'intelligenza artificiale costa circa 8 miliardi di dollari e, una volta acceso, dà lavoro a 50, forse 150 persone. Gli stessi soldi investiti altrove ne occuperebbero più di diecimila. Secondo lui il rischio non è la disoccupazione di massa, ma una domanda di lavoro più debole, che spinge giù i salari e sposta potere verso chi possiede il capitale. Ethan Mollick, professore alla Wharton, aggiunge l'altro lato: l'intelligenza artificiale sta passando dal semplice chatbot ad agenti che svolgono lavoro vero da soli. E quindi ognuno di noi deve decidere cosa delegare e dove i propri punti di forza contano ancora.",
+    "titolo_en": "And what about jobs?",
+    "testo_en": "Then there are jobs. Barclays, a big British bank, will cut about 5,000 jobs, 60 percent in support offices. American Express will cut 5 percent of its staff, about 3,850 people. Both talk about efficiency and investing in AI. But neither says how many jobs AI will really replace. The economist Paul Krugman looks at where the money goes. Quoting a study, he writes that a large AI data centre costs about 8 billion dollars but employs only 50 to 150 people. The same money invested elsewhere would employ more than ten thousand. For him, the risk is not mass unemployment, but weaker demand for workers, lower wages and more power for capital. Ethan Mollick, a Wharton professor, adds that AI is moving from chatbots to agents that do real work alone. So we must decide what to delegate and where our strengths still matter."
+   },
+   {
+    "titolo": "Bolla o ferrovia?",
+    "testo": "Allora, è una bolla? L'economista Noah Smith fa un paragone storico che trovo molto utile: le ferrovie americane di fine Ottocento. Secondo lui, in rapporto all'economia, l'intelligenza artificiale è ormai uno dei due più grandi boom di infrastrutture della storia americana. Finora i ricavi, spinti soprattutto dagli agenti che scrivono codice, hanno tenuto il passo con la spesa, quindi non vede un crollo imminente. Ma avverte: più i giganti della tecnologia si indebitano, più ricavi servono solo per restare in piedi. Se paghi con i tuoi soldi e va male, perdi i risparmi. Se paghi a debito, rischi di non restituire. Ed è proprio il passaggio che abbiamo visto con Meta. Gary Marcus, scienziato e critico storico di questa ondata, è più duro: commentando un nuovo studio, sostiene che è ancora molto difficile trovare effetti finanziari misurabili della spesa in intelligenza artificiale. Io la vedo così. La tecnologia è reale, e conti come quelli di SAP, con il cloud in crescita del 26 per cento, dicono che le imprese continuano a investire. Ma il conto, per ora, lo pagano in tanti: gli azionisti con la Borsa che scende, le aziende con il debito, i lavoratori con meno posti, le famiglie con tassi che non scendono. La domanda vera non è se l'intelligenza artificiale funzioni. È se renderà abbastanza, e abbastanza presto, da ripagare tutti.",
+    "titolo_en": "Bubble or railway?",
+    "testo_en": "So, is it a bubble? The economist Noah Smith compares AI to the American railways of the late 1800s. In his view, AI is now one of the two biggest infrastructure booms in American history. So far revenue, driven mainly by coding agents, has kept pace with spending, so he sees no crash coming soon. But he warns: the more tech giants borrow, the more revenue they need just to survive. Gary Marcus, a long-time critic, is tougher: he says it is still very hard to find measurable financial results from AI spending. This is how I see it. The technology is real, and SAP's cloud business, growing by 26 percent, shows that companies keep investing. But today many people pay the bill: shareholders, companies with debt, workers, families. The real question is not whether AI works. It is whether it will pay off soon enough."
+   },
+   {
+    "titolo": "Cosa tenere d'occhio la prossima settimana",
+    "testo": "E adesso, l'agenda. Mercoledì 28 ottobre decide la Fed: ci si aspetta tassi fermi tra il 3,75 e il 4 per cento. Giovedì 29 tocca alla Banca centrale europea, attesa ferma al 2,5 per cento. Ascolta soprattutto cosa diranno su dicembre. Giovedì esce anche l'indice dei prezzi più seguito dalla Fed, atteso al 3,6 per cento. E poi i conti di Alphabet, cioè Google, di Microsoft e di Amazon: se anche loro spenderanno di più senza mostrare ritorni, i ribassi potrebbero continuare, mentre conti solidi potrebbero calmare i timori. Tieni d'occhio anche il petrolio, perché sopra i 110 dollari un rialzo dei tassi a dicembre diventa più probabile. E un compito per te: lunedì, guarda cosa ha deciso l'agenzia Moody's sul voto alla Francia. Una parola inglese da portarti via? Capex, capital expenditure: la spesa per investimenti. Buon weekend, Matteo, e a presto.",
+    "titolo_en": "What to watch next week",
+    "testo_en": "And now, next week. On Wednesday 28 October the Fed decides, and rates should stay between 3.75 and 4 percent. On Thursday 29 the European Central Bank should hold at 2.5 percent. Listen to what they say about December. On Thursday there is also the price index the Fed follows most, expected at 3.6 percent. Then Alphabet, Microsoft and Amazon present their results: more spending without returns could mean more falls. Watch oil too: above 110 dollars, a December rate rise becomes more likely. Homework: check what Moody's decided about France. Your English word of the day is capex, capital expenditure, which means spending on investment. Have a good weekend, Matteo."
+   }
+  ]
+ },
+ "attualita": {
+  "voci": [
+   {
+    "categoria": "Italia",
+    "titolo": "Sabato di cortei a rischio: Milano blindata per il \"Movimento 17 ottobre\"",
+    "in_breve": "Oggi cortei in più città dopo i disordini dello scorso weekend a Milano. La Digos ha perquisito circa 100 persone in 18 città (51 minorenni); il movimento dice che annuncerà i punti di ritrovo solo all'ultimo.",
+    "titolo_en": "Protest Saturday: Milan on high alert for the \"October 17 Movement\"",
+    "in_breve_en": "Marches are planned today in several cities after riots in Milan last weekend. Police searched about 100 people in 18 cities, 51 of them minors. The movement says it will announce meeting points only at the last minute.",
+    "fonte": "Sky TG24",
+    "url": "https://tg24.sky.it/cronaca/2026/10/24/manifestazione-sabato-24-ottobre-proteste-italia-diretta"
+   },
+   {
+    "categoria": "Italia",
+    "titolo": "Individuato il presunto creatore della pagina \"Movimento 17 ottobre\"",
+    "in_breve": "È un trentenne residente nel Bresciano, indagato per istigazione a delinquere e interrogato in questura a Milano. In città vetrine coperte con pannelli di legno e oltre 1.200 tra agenti e militari.",
+    "titolo_en": "Police identify the suspected creator of the \"October 17 Movement\" page",
+    "in_breve_en": "He is a 30-year-old man living near Brescia. He is under investigation for inciting crime and was questioned by police in Milan. In the city, shop windows are covered with wood and more than 1,200 police and soldiers are on duty.",
+    "fonte": "Sky TG24",
+    "url": "https://tg24.sky.it/cronaca/2026/10/24/ideatore-movimento-17-ottobre-chi-e"
+   },
+   {
+    "categoria": "Politica",
+    "titolo": "Nordio: \"Ampliare le carceri minorili\", polemica dalle opposizioni",
+    "in_breve": "Il ministro della Giustizia dice che non ci sono mai stati così tanti arresti di minori e propone più posti, anche in sezioni delle carceri per adulti. In 4 anni i ragazzi detenuti sono saliti da 280 a 570; PD, M5S e AVS contrari.",
+    "titolo_en": "Justice Minister Nordio wants bigger youth prisons; opposition says no",
+    "in_breve_en": "The minister says there have never been so many arrests of minors. He wants more places, also in parts of adult prisons. In four years young detainees rose from 280 to 570. The opposition parties are against the plan.",
+    "fonte": "ANSA",
+    "url": "https://www.ansa.it/sito/notizie/politica/2026/10/22/nordio-ampliare-le-carceri-minorili.-in-4-anni-40-ragazzi-in-cella_8833a264-5004-485d-931e-6256bc03fd2a.html"
+   },
+   {
+    "categoria": "Mondo",
+    "titolo": "Giordania, spari in una chiesa ortodossa durante un funerale: 7 morti",
+    "in_breve": "Venerdì uomini armati hanno aperto il fuoco in una chiesa greco-ortodossa nel governatorato di Karak, con 7 morti e decine di feriti. Nessuna rivendicazione; sicurezza rafforzata in tutto il Paese.",
+    "titolo_en": "Jordan: gunmen attack a church during a funeral, 7 dead",
+    "in_breve_en": "On Friday gunmen opened fire in a Greek Orthodox church in Karak province. Seven people died and dozens were hurt. No group has claimed the attack, and security is stronger across the country.",
+    "fonte": "Reuters",
+    "url": "https://www.internazionale.it/ultime-notizie-reuters/2026/10/24/us-embassy-says-security-ramped-up-in-jordan-after-deadly-church-attack"
+   },
+   {
+    "categoria": "Mondo",
+    "titolo": "Ucraina, tregua umanitaria a Oleshky: la Casa Bianca la attribuisce a Melania Trump",
+    "in_breve": "Russia e Ucraina sospenderanno i combattimenti nella città per far arrivare aiuti ed evacuare i civili. Secondo Mosca e Kiev il cessate il fuoco parte il 27 ottobre; la Casa Bianca indica il 29.",
+    "titolo_en": "Ukraine: a humanitarian truce in Oleshky, credited to Melania Trump",
+    "in_breve_en": "Russia and Ukraine will stop fighting in the city to bring in aid and move civilians out. Moscow and Kyiv say the ceasefire starts on October 27; the White House says October 29.",
+    "fonte": "Sky TG24",
+    "url": "https://tg24.sky.it/mondo/2026/10/23/guerra-ucraina-russia-ultime-notizie-diretta"
+   },
+   {
+    "categoria": "Sport",
+    "titolo": "Serie A, il Torino batte il Monza 3-2 e sorpassa la Juventus",
+    "in_breve": "Nell'anticipo dell'8ª giornata i granata vincono la terza partita di fila e salgono al sesto posto, davanti alla Juve.",
+    "titolo_en": "Serie A: Torino beat Monza 3-2 and move above Juventus",
+    "in_breve_en": "In Friday's early match of round 8, Torino won their third game in a row. They are now sixth in the table, ahead of Juventus.",
+    "fonte": "ANSA",
+    "url": "https://ansa.it/sito/notizie/sport/calcio/2026/10/23/serie-a-torino-monza-1-0-diretta-e-foto_3103b24d-f062-443f-85de-251baa8873d4.html"
+   }
+  ]
  }
 }
