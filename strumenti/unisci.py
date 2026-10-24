@@ -24,7 +24,14 @@ for n in notizie:
 ids = [n["id"] for n in notizie]
 if len(ids) != len(set(ids)): errs.append("id duplicati")
 doc = {"data": day, "generato": gen, "notizie": notizie,
-       "numeri": load("numeri.json", {"voci": []}), "aziende": load("aziende.json", {"voci": []}), "voci": load("voci.json", {"voci": []})}
+       "numeri": load("numeri.json", {"voci": []}), "aziende": load("aziende.json", {"voci": []}), "voci": load("voci.json", {"voci": []}),
+       "podcast": load("podcast.json"), "attualita": load("attualita.json", {"voci": []})}
+pod = doc["podcast"] or {}
+pw = sum(len((c.get("testo") or "").split()) for c in pod.get("capitoli", []))
+pe = sum(len((c.get("testo_en") or "").split()) for c in pod.get("capitoli", []))
+if pw < 1000: errs.append(f"podcast italiano troppo corto o mancante ({pw} parole, servono 1.100-1.500)")
+if pe < 800: errs.append(f"podcast inglese troppo corto o mancante ({pe} parole, servono 900-1.200)")
+if len(doc["attualita"].get("voci", [])) < 5: errs.append("attualità: servono 5-7 voci")
 out.mkdir(parents=True, exist_ok=True)
 (out / f"{day}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
 ip = out / "indice.json"

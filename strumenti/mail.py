@@ -55,6 +55,28 @@ def numbers(d):
             f'<tr><td><table width="100%" cellpadding="0" cellspacing="0" style="background:{C["card"]};border:1px solid {C["line"]};border-radius:16px"><tr>{cells}</tr></table>'
             f'<div style="{F}font-size:12px;color:{C["fog"]};margin-top:6px">{e(d["numeri"].get("aggiornato",""))}</div></td></tr>')
 
+def podcast(d):
+    p = d.get("podcast") or {}
+    caps = p.get("capitoli") or []
+    if not caps: return ""
+    w = sum(len((c.get("testo") or "").split()) for c in caps)
+    return (f'<tr><td style="padding:14px 0 0"><a href="{SITO}/#podcast" style="text-decoration:none">'
+            f'<table width="100%" cellpadding="0" cellspacing="0" style="background:#0B2822;border-radius:16px"><tr><td style="padding:16px 18px">'
+            f'<div style="{F}font-size:12px;font-weight:800;color:#34D893">IL PODCAST DI OGGI · {max(1, round(w/150))} MIN</div>'
+            f'<div style="{F}font-size:18px;font-weight:800;color:#fff;margin-top:6px">▶ {e(p.get("titolo",""))}</div>'
+            f'<div style="{F}font-size:13.5px;color:#BFD8CD;margin-top:4px">{e(" · ".join(c["titolo"] for c in caps[:5]))}</div>'
+            f'</td></tr></table></a></td></tr>')
+
+def attualita(d):
+    v = (d.get("attualita") or {}).get("voci") or []
+    if not v: return ""
+    rows = "".join(f'<tr><td style="padding:7px 0;border-top:1px solid {C["line"]};{F}font-size:14px;line-height:1.4;color:{C["ink"]}">'
+                   f'<span style="color:{C["fog"]};font-weight:700">{e(x.get("categoria",""))}</span> &nbsp;<a href="{e(x.get("url",""))}" style="color:{C["ink"]};text-decoration:none"><b>{e(x["titolo"])}</b></a><br>'
+                   f'<span style="color:{C["fog"]}">{e(x.get("in_breve",""))}</span></td></tr>' for x in v)
+    return (f'<tr><td style="padding:18px 0 6px;{F}font-size:21px;font-weight:800;color:{C["ink"]}">Di cosa si parla oggi</td></tr>'
+            f'<tr><td><table width="100%" cellpadding="0" cellspacing="0" style="background:{C["card"]};border:1px solid {C["line"]};border-radius:16px"><tr><td style="padding:6px 16px">'
+            f'<table width="100%" cellpadding="0" cellspacing="0">{rows}</table></td></tr></table></td></tr>')
+
 def build(d):
     y, m, g = map(int, d["data"].split("-"))
     import datetime
@@ -72,9 +94,11 @@ def build(d):
 <div style="{F}font-size:15px;color:#C9D2E6;margin-top:8px">{data}: {len(d["notizie"])} notizie di AI ed economia. Qui le più importanti, spiegate semplici. Nell'app scegli tu quanto approfondire.</div>
 </td></tr>
 <tr><td style="padding:8px 14px 0"><table width="100%" cellpadding="0" cellspacing="0">
+{podcast(d)}
 {section("Intelligenza artificiale", ai)}
 {section("Economia", eco)}
 {numbers(d)}
+{attualita(d)}
 <tr><td align="center" style="padding:22px 0 0"><table cellpadding="0" cellspacing="0"><tr><td style="background:{C["ink"]};border-radius:99px">
 <a href="{SITO}" style="display:inline-block;padding:14px 26px;{F}font-size:15px;font-weight:800;color:#fff;text-decoration:none">Apri EcoAI: tutte le notizie, livelli 1-10</a></td></tr></table>
 <div style="{F}font-size:12px;color:{C["fog"]};margin-top:12px">Ogni notizia ha il link alla fonte originale.</div></td></tr>
