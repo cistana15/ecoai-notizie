@@ -31,6 +31,10 @@ pw = sum(len((c.get("testo") or "").split()) for c in pod.get("capitoli", []))
 pe = sum(len((c.get("testo_en") or "").split()) for c in pod.get("capitoli", []))
 if pw < 1000: errs.append(f"podcast italiano troppo corto o mancante ({pw} parole, servono 1.100-1.500)")
 if pe < 800: errs.append(f"podcast inglese troppo corto o mancante ({pe} parole, servono 900-1.200)")
+for v in doc["voci"].get("voci", []):
+    if len((v.get("riassunto") or "").split()) < 150: errs.append(f"voce {v.get('autore')}: manca il riassunto (180-280 parole)")
+for c in doc["aziende"].get("voci", []):
+    if not c.get("novita"): errs.append(f"azienda {c.get('nome')}: manca la novità del giorno")
 if len(doc["attualita"].get("voci", [])) < 5: errs.append("attualità: servono 5-7 voci")
 out.mkdir(parents=True, exist_ok=True)
 (out / f"{day}.json").write_text(json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")

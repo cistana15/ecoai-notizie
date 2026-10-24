@@ -9,7 +9,7 @@ Ogni notizia:
   "tag": "Modelli",                     // breve categoria in italiano
   "titolo": "...",                      // CHIARO: dice cosa è successo con parole comuni, niente sigle o gergo non spiegati. Max ~90 caratteri.
                                         //   NO: "Meta, impegni per 825 mld e il titolo cade"  SÌ: "Meta spenderà cifre enormi per l'AI e gli investitori vendono le sue azioni"
-  "il_punto": "...",                    // 1-2 frasi, la sostanza: "In pratica: ..." cosa significa davvero e perché conta
+  "il_punto": "...",                    // 1-2 frasi CROCCANTI: il gancio che cattura l'attenzione e dice la sostanza (cosa significa davvero e perché conta). Es: "Meta guadagna come mai prima, ma spende ancora di più: per la prima volta la Borsa le chiede il conto."
   "sottotitolo": "...",                 // 1 frase di contesto
   "fonte": "Reuters", "url": "https://...articolo", "data": "AAAA-MM-GG", "importanza": 1-5,
   "immagine": "",                       // facoltativo: URL og:image solo se visto davvero
@@ -43,8 +43,12 @@ REGOLE FERREE
 # Altri file della ricerca
 numeri.json  -> {"aggiornato":"chiusura di <giorno>", "voci":[{"nome","valore","variazione","nota","nota_en","spiegazione","fonte","url"}]}
    "spiegazione": 1 frase semplice su cos'è (es. "FTSE MIB: l'indice delle 40 aziende più grandi della Borsa di Milano"). Voci: FTSE MIB, Euro Stoxx 50, S&P 500, Nasdaq Composite, euro/dollaro, Brent, oro, Bitcoin, spread BTP-Bund, BTP 10 anni. Solo valori verificati con link.
-aziende.json -> {"titolo":"...","voci":[{"nome","settore":"AI"|"Economia","cosa_fa","cosa_succede","cosa_succede_en","numero","url_notizia","sito","linkedin"}]}  6-8 aziende; "cosa_fa" = 1 frase su cosa fa l'azienda; linkedin solo se verificato, altrimenti "".
-voci.json    -> {"voci":[{"autore","ruolo","tipo","titolo","titolo_en","sintesi","sintesi_en","perche_leggerlo","perche_leggerlo_en","url","data","profilo"}]}  4-6 opinioni pubbliche degli ultimi 10 giorni.
+aziende.json -> {"titolo":"Aziende in movimento oggi","voci":[{"nome","settore":"AI"|"Economia","cosa_fa","cosa_fa_en","novita","novita_en","cosa_succede","cosa_succede_en","data","numero","url_notizia","sito","linkedin"}]}
+   6-8 aziende con una NOVITÀ DEL GIORNO (ultime 24-48 ore: conti trimestrali, forte movimento in Borsa, accordo, lancio, causa, multa, nomina). NON "aziende da seguire" in generale.
+   "novita" = titolo breve della novità (es. "Crolla del 16% in Borsa dopo i conti di Gucci"); "cosa_succede" = 2-3 frasi: cosa è successo, perché, cosa significa; "data" = AAAA-MM-GG della novità; "cosa_fa" = 1 frase su cosa fa l'azienda; linkedin solo se verificato, altrimenti "".
+voci.json    -> {"voci":[{"autore","ruolo","tipo","titolo","titolo_en","sintesi","sintesi_en","punti","punti_en","riassunto","riassunto_en","perche_leggerlo","perche_leggerlo_en","url","data","profilo"}]}
+   4-6 opinioni pubbliche degli ultimi 10 giorni. Apri DAVVERO il pezzo con WebFetch.
+   "sintesi" = 2-3 frasi; "punti" = 3-5 frasi brevi con le tesi principali; "riassunto" = 180-280 parole che rielaborano fedelmente il ragionamento dell'autore (cosa sostiene, con quali argomenti e dati, cosa conclude), in italiano semplice, attribuendo tutto all'autore ("secondo Krugman..."); citazioni tra virgolette solo se copiate esattamente. Versioni _en in inglese semplice.
 
 # Podcast del giorno (podcast.json)
 {"titolo": "...", "titolo_en": "...",
