@@ -6,8 +6,8 @@ SITO = "https://ecoai.matteo-rizza.workers.dev"
 e = html.escape
 F = "font-family:'Segoe UI',Helvetica,Arial,sans-serif;"
 S = "font-family:Georgia,'Times New Roman',serif;"
-C = dict(bg="#EDF1F6", card="#FFFFFF", ink="#14213D", fog="#4A5672", line="#CDD6E3", ai="#5B4FD6", aisoft="#E6E3FB",
-         eco="#0B7F62", ecosoft="#D9F0E8", amber="#F2B33D", up="#0B7F62", down="#C2413A")
+C = dict(bg="#F3F4EF", card="#FFFFFF", ink="#030504", fog="#4D554F", line="#DADDD5", ai="#4C7A00", aisoft="#EEFFC7",
+         eco="#007A3D", ecosoft="#D8F8E5", amber="#C6FF34", up="#007A3D", down="#C93A2E")
 MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"]
 GIORNI = ["lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"]
 
@@ -61,10 +61,10 @@ def podcast(d):
     if not caps: return ""
     w = sum(len((c.get("testo") or "").split()) for c in caps)
     return (f'<tr><td style="padding:14px 0 0"><a href="{SITO}/#podcast" style="text-decoration:none">'
-            f'<table width="100%" cellpadding="0" cellspacing="0" style="background:#0B2822;border-radius:16px"><tr><td style="padding:16px 18px">'
-            f'<div style="{F}font-size:12px;font-weight:800;color:#34D893">IL PODCAST DI OGGI · {max(1, round(w/150))} MIN</div>'
+            f'<table width="100%" cellpadding="0" cellspacing="0" style="background:#030504;border-radius:16px"><tr><td style="padding:16px 18px">'
+            f'<div style="{F}font-size:12px;font-weight:800;color:#C6FF34">IL PODCAST DI OGGI · {max(1, round(w/150))} MIN</div>'
             f'<div style="{F}font-size:18px;font-weight:800;color:#fff;margin-top:6px">▶ {e(p.get("titolo",""))}</div>'
-            f'<div style="{F}font-size:13.5px;color:#BFD8CD;margin-top:4px">{e(" · ".join(c["titolo"] for c in caps[:5]))}</div>'
+            f'<div style="{F}font-size:13.5px;color:#B9C2BC;margin-top:4px">{e(" · ".join(c["titolo"] for c in caps[:5]))}</div>'
             f'</td></tr></table></a></td></tr>')
 
 def attualita(d):
@@ -95,7 +95,7 @@ def build(d):
 <body style="margin:0;background:{C["bg"]}"><table width="100%" cellpadding="0" cellspacing="0" style="background:{C["bg"]}"><tr><td align="center" style="padding:0 0 28px">
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px">
 <tr><td style="background:{C["ink"]};padding:26px 22px;border-radius:0 0 22px 22px">
-<div style="{F}font-size:30px;font-weight:800;line-height:1"><span style="color:#3FCF9F">Eco</span><span style="color:#9D94FF">AI</span></div>
+<div style="{F}font-size:30px;font-weight:800;line-height:1"><span style="color:#FFFFFF">Eco</span><span style="color:#C6FF34">AI</span></div>
 <div style="{F}font-size:15px;color:#C9D2E6;margin-top:8px">{data}: {len(d["notizie"])} notizie di AI ed economia. Qui le più importanti, spiegate semplici. Nell'app scegli tu quanto approfondire.</div>
 </td></tr>
 <tr><td style="padding:8px 14px 0"><table width="100%" cellpadding="0" cellspacing="0">
