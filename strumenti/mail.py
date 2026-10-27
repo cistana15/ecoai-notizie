@@ -23,6 +23,24 @@ def en_block(n):
     return (f'<div style="{F}font-size:11.5px;font-weight:800;color:{C["fog"]};margin-top:10px">IN ENGLISH</div>'
             f'<div style="{S}font-size:14.5px;line-height:1.5;color:{C["fog"]};font-style:italic">{e(t)}</div>')
 
+PARTI = ("Cosa è successo", "Perché", "Cosa cambia")
+
+def parti_testo(n):
+    """Le parti della notizia (livello 4) senza "Un esempio": l'esempio resta solo nell'app.
+    Se il livello 4 non ha le etichette, usa il livello 1."""
+    out = []
+    for par in (n.get("livelli", {}).get("4") or "").split("\n\n"):
+        et, sep, testo = par.partition(": ")
+        if sep and et.strip() in PARTI and testo.strip():
+            out.append((et.strip(), testo.strip()))
+    return out
+
+def parti(n):
+    ps = parti_testo(n)
+    if not ps:
+        return f'<div style="{S}font-size:15.5px;line-height:1.55;color:{C["ink"]}">{e(n["livelli"]["1"])}</div>'
+    return "".join(f'<div style="{S}font-size:15.5px;line-height:1.55;color:{C["ink"]};margin:0 0 8px"><b style="{F}font-size:13.5px">{e(et)}:</b> {e(t)}</div>' for et, t in ps)
+
 def item(n):
     ai = n["sezione"] == "ai"
     col, soft = (C["ai"], C["aisoft"]) if ai else (C["eco"], C["ecosoft"])
@@ -31,7 +49,7 @@ def item(n):
 <span style="{F}display:inline-block;background:{soft};color:{col};font-size:12px;font-weight:700;border-radius:99px;padding:2px 9px">{e(n.get("tag",""))}</span>
 <span style="{F}font-size:12.5px;color:{C["fog"]}">&nbsp;{e(n["fonte"])}</span>
 <div style="{F}font-size:18px;line-height:1.25;font-weight:800;color:{C["ink"]};margin:8px 0 6px">{e(n["titolo"])}</div>
-{punto(n)}<div style="{S}font-size:15.5px;line-height:1.55;color:{C["ink"]}">{e(n["livelli"]["1"])}</div>
+{punto(n)}{parti(n)}
 {en_block(n)}
 <div style="{F}font-size:13.5px;margin-top:10px"><a href="{SITO}/#{n["sezione"]}" style="color:{col};font-weight:700;text-decoration:none">Approfondisci su EcoAI</a>
 &nbsp;&nbsp;<a href="{e(n["url"])}" style="color:{C["fog"]};text-decoration:underline">Articolo originale</a></div>
@@ -42,7 +60,12 @@ def section(title, items):
     return f'<tr><td style="padding:18px 0 10px;{F}font-size:21px;font-weight:800;color:{C["ink"]}">{title}</td></tr>' + "".join(item(n) for n in items)
 
 def numbers(d):
-    voci = (d.get("numeri") or {}).get("voci", [])[:6]
+    tutte = (d.get("numeri") or {}).get("voci", [])
+    voci = tutte[:6]
+    # il Bitcoin c'è sempre nella mail, anche se nell'elenco viene dopo i primi 6
+    btc = [v for v in tutte if "bitcoin" in str(v.get("nome", "")).lower()]
+    if btc and btc[0] not in voci:
+        voci = tutte[:5] + [btc[0]]
     if not voci: return ""
     cells = ""
     for i, v in enumerate(voci):
@@ -109,7 +132,7 @@ def build(d):
 <div style="{F}font-size:12px;color:{C["fog"]};margin-top:12px">Ogni notizia ha il link alla fonte originale.{verifica(d)}</div></td></tr>
 </table></td></tr></table></td></tr></table></body></html>'''
     subject = f"EcoAI · {data} · {top['titolo']}"
-    text = f"EcoAI, {data}\n\n" + "\n\n".join(f"{n['titolo']}\n{n['livelli']['1']}\n{n['url']}" for n in ai + eco) + f"\n\nTutte le notizie: {SITO}"
+    text = f"EcoAI, {data}\n\n" + "\n\n".join(f"{n['titolo']}\n" + ("\n".join(f"{et}: {t}" for et, t in parti_testo(n)) or n['livelli']['1']) + f"\n{n['url']}" for n in ai + eco) + f"\n\nTutte le notizie: {SITO}"
     return subject, body, text
 
 if __name__ == "__main__":
