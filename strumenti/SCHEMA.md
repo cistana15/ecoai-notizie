@@ -2,6 +2,18 @@
 
 Lettore: Matteo, 25 anni, Milano, lavora nella compliance finanziaria. Intelligente ma NON esperto di finanza o tecnologia: sigle e gergo lo bloccano. Vuole capire IL PUNTO: cosa è successo, perché, cosa cambia, con esempi.
 
+## Stile di scrittura (deciso da Matteo il 28/10/2026, vale per italiano e inglese)
+Modello: gli articoli di Medium (Daily Digest) e in particolare quelli di Alessandro Villani (medium.com/@alessandrovillani0000, es. "Identity is the new money"). Prendere il METODO, mai copiare frasi o contenuti.
+- Frasi brevi: una idea per frase, di solito sotto le 20 parole. Paragrafi di 2-4 frasi.
+- Apri con qualcosa che il lettore conosce dalla vita di tutti i giorni, poi la svolta ("Ma la realtà è diversa." / "The reality is different.").
+- Ogni tanto una frase da sola, secca, che fissa il concetto chiave (massimo 1-2 per notizia).
+- Un'immagine semplice che regge tutto il ragionamento (es. "una linea che diventa un triangolo"), al posto di tanti esempi sparsi.
+- Domande retoriche solo se aiutano a capire, al massimo una.
+- Chiudi con la conseguenza pratica o la domanda che resta aperta, non con un riassunto.
+- Parole comuni; ogni sigla o termine tecnico spiegato la prima volta (regola già sopra).
+- Inglese ("en"): frasi brevi, parole semplici (A2-B1 per i livelli 1 e 4), forma attiva, niente idiomi difficili: deve servire a Matteo per imparare.
+- Lo stile non cambia le REGOLE FERREE: nessun fatto, numero, nome o citazione inventati.
+
 Ogni notizia:
 {
   "id": "ai-01",                        // ai-01..ai-10 / eco-01..eco-10
