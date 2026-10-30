@@ -1,27 +1,47 @@
-"""Mail del mattino EcoAI (HTML compatibile con Gmail: tabelle e stili inline).
+"""Mail del mattino EcoAI (HTML compatibile con Gmail: tabelle e stili inline, tema scuro come l'app, dal 30/10/2026).
 Uso: python3 mail.py dati/AAAA-MM-GG.json  -> scrive mail_oggetto.txt, mail.html, mail.txt nella cartella corrente."""
-import json, sys, html, pathlib
+import json, sys, html, pathlib, re as _re
 
 SITO = "https://ecoai.matteo-rizza.workers.dev"
 e = html.escape
 F = "font-family:'Segoe UI',Helvetica,Arial,sans-serif;"
 S = "font-family:Georgia,'Times New Roman',serif;"
-C = dict(bg="#F3F4EF", card="#FFFFFF", ink="#030504", fog="#4D554F", line="#DADDD5", ai="#4C7A00", aisoft="#EEFFC7",
-         eco="#007A3D", ecosoft="#D8F8E5", amber="#C6FF34", up="#007A3D", down="#C93A2E")
+# colori dell'app: fondo nero, superfici verde scurissimo, lime = AI, verde = Economia
+C = dict(bg="#030504", card="#0B110D", s2="#131C16", ink="#F2F5F1", fog="#A9B3AC", line="#1E2A22",
+         ai="#C6FF34", aisoft="#1F2A0A", eco="#2BFF88", ecosoft="#0E2A1B", up="#2BFF88", down="#FF8A7A")
 MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"]
 GIORNI = ["lunedì","martedì","mercoledì","giovedì","venerdì","sabato","domenica"]
+
+
+def gmail_safe(h):
+    """Gmail (invio dalle attività di Claude) toglie la proprietà abbreviata `background:` dagli stili:
+    lo sfondo sparisce e il testo chiaro resta su bianco. Qui si usa `background-color:` e in più l'attributo
+    `bgcolor` su tabelle e celle, che Gmail conserva (verificato il 30/10/2026 con una mail di prova)."""
+    h = _re.sub(r'(?<![-\w])background\s*:', 'background-color:', h)
+    def add(m):
+        tag, attrs = m.group(1), m.group(2)
+        if 'bgcolor=' in attrs: return m.group(0)
+        c = _re.search(r'background-color:\s*(#[0-9A-Fa-f]{3,8})', attrs)
+        return f'<{tag} bgcolor="{c.group(1)}"{attrs}>' if c else m.group(0)
+    return _re.sub(r'<(table|td|body)(\s[^>]*)>', add, h)
+
+def colori(n):
+    return (C["ai"], C["aisoft"]) if n["sezione"] == "ai" else (C["eco"], C["ecosoft"])
 
 def punto(n):
     p = n.get("il_punto")
     if not p: return ""
-    return (f'<div style="{F}background:{C["bg"]};border-left:4px solid {C["amber"]};border-radius:8px;padding:9px 12px;margin:0 0 10px;font-size:14.5px;line-height:1.45;color:{C["ink"]}">'
-            f'<b>Il punto:</b> {e(p)}</div>')
+    col, _ = colori(n)
+    return (f'<table width="100%" cellpadding="0" cellspacing="0" style="background:{C["s2"]};border-radius:12px;margin:0 0 14px"><tr>'
+            f'<td width="4" style="background:{col};border-radius:12px 0 0 12px;font-size:0">&nbsp;</td>'
+            f'<td style="padding:11px 14px;{F}font-size:15px;line-height:1.5;color:{C["ink"]}"><b style="color:{col}">Il punto</b><br>{e(p)}</td></tr></table>')
 
 def en_block(n):
     t = ((n.get("en") or {}).get("livelli") or {}).get("1")
     if not t: return ""
-    return (f'<div style="{F}font-size:11.5px;font-weight:800;color:{C["fog"]};margin-top:10px">IN ENGLISH</div>'
-            f'<div style="{S}font-size:14.5px;line-height:1.5;color:{C["fog"]};font-style:italic">{e(t)}</div>')
+    return (f'<div style="border-top:1px solid {C["line"]};margin-top:12px;padding-top:10px">'
+            f'<div style="{F}font-size:12.5px;font-weight:700;color:{C["fog"]}">In inglese</div>'
+            f'<div style="{S}font-size:14.5px;line-height:1.5;color:{C["fog"]};font-style:italic;margin-top:3px">{e(t)}</div></div>')
 
 PARTI = ("Cosa è successo", "Perché", "Cosa cambia")
 
@@ -38,26 +58,36 @@ def parti_testo(n):
 def parti(n):
     ps = parti_testo(n)
     if not ps:
-        return f'<div style="{S}font-size:15.5px;line-height:1.55;color:{C["ink"]}">{e(n["livelli"]["1"])}</div>'
-    return "".join(f'<div style="{S}font-size:15.5px;line-height:1.55;color:{C["ink"]};margin:0 0 8px"><b style="{F}font-size:13.5px">{e(et)}:</b> {e(t)}</div>' for et, t in ps)
+        return f'<div style="{S}font-size:15.5px;line-height:1.6;color:{C["ink"]}">{e(n["livelli"]["1"])}</div>'
+    col, _ = colori(n)
+    return "".join(f'<div style="margin:0 0 12px"><div style="{F}font-size:13px;font-weight:700;color:{col}">{e(et)}</div>'
+                   f'<div style="{S}font-size:15.5px;line-height:1.6;color:{C["ink"]};margin-top:2px">{e(t)}</div></div>' for et, t in ps)
 
 def item(n):
-    ai = n["sezione"] == "ai"
-    col, soft = (C["ai"], C["aisoft"]) if ai else (C["eco"], C["ecosoft"])
-    return f'''<tr><td style="padding:0 0 12px"><table width="100%" cellpadding="0" cellspacing="0" style="background:{C["card"]};border:1px solid {C["line"]};border-radius:16px">
-<tr><td style="padding:16px 18px">
-<span style="{F}display:inline-block;background:{soft};color:{col};font-size:12px;font-weight:700;border-radius:99px;padding:2px 9px">{e(n.get("tag",""))}</span>
-<span style="{F}font-size:12.5px;color:{C["fog"]}">&nbsp;{e(n["fonte"])}</span>
-<div style="{F}font-size:18px;line-height:1.25;font-weight:800;color:{C["ink"]};margin:8px 0 6px">{e(n["titolo"])}</div>
+    col, soft = colori(n)
+    tag = (f'<span style="{F}display:inline-block;background:{soft};color:{col};font-size:12px;font-weight:700;border-radius:99px;padding:3px 10px">{e(n["tag"])}</span>&nbsp; '
+           if n.get("tag") else "")
+    return f'''<tr><td style="padding:0 0 12px"><table width="100%" cellpadding="0" cellspacing="0" style="background:{C["card"]};border:1px solid {C["line"]};border-radius:18px">
+<tr><td style="padding:18px 18px 16px">
+<div>{tag}<span style="{F}font-size:12.5px;color:{C["fog"]}">{e(n["fonte"])}</span></div>
+<div style="{F}font-size:19px;line-height:1.28;font-weight:800;color:{C["ink"]};margin:10px 0 12px">{e(n["titolo"])}</div>
 {punto(n)}{parti(n)}
 {en_block(n)}
-<div style="{F}font-size:13.5px;margin-top:10px"><a href="{SITO}/#{n["sezione"]}" style="color:{col};font-weight:700;text-decoration:none">Approfondisci su EcoAI</a>
-&nbsp;&nbsp;<a href="{e(n["url"])}" style="color:{C["fog"]};text-decoration:underline">Articolo originale</a></div>
+<table cellpadding="0" cellspacing="0" style="margin-top:12px"><tr>
+<td style="border:1px solid {col};border-radius:99px"><a href="{SITO}/#{n["sezione"]}" style="display:inline-block;padding:8px 14px;{F}font-size:13.5px;font-weight:700;color:{col};text-decoration:none">Approfondisci su EcoAI</a></td>
+<td style="padding-left:14px"><a href="{e(n["url"])}" style="{F}font-size:13.5px;color:{C["fog"]};text-decoration:underline">Articolo originale</a></td>
+</tr></table>
 </td></tr></table></td></tr>'''
 
-def section(title, items):
+def titolo(t, col, nota=""):
+    n = f'<span style="{F}font-size:14px;font-weight:400;color:{C["fog"]}">&nbsp; {e(nota)}</span>' if nota else ""
+    return (f'<tr><td style="padding:22px 0 12px"><table cellpadding="0" cellspacing="0"><tr>'
+            f'<td width="5" style="background:{col};border-radius:3px;font-size:0">&nbsp;</td>'
+            f'<td style="padding-left:10px;{F}font-size:21px;font-weight:800;color:{C["ink"]}">{t}{n}</td></tr></table></td></tr>')
+
+def section(title, items, col):
     if not items: return ""
-    return f'<tr><td style="padding:18px 0 10px;{F}font-size:21px;font-weight:800;color:{C["ink"]}">{title}</td></tr>' + "".join(item(n) for n in items)
+    return titolo(title, col, f"{len(items)} " + ("notizia" if len(items) == 1 else "notizie")) + "".join(item(n) for n in items)
 
 def numbers(d):
     tutte = (d.get("numeri") or {}).get("voci", [])
@@ -67,37 +97,48 @@ def numbers(d):
     if btc and btc[0] not in voci:
         voci = tutte[:5] + [btc[0]]
     if not voci: return ""
-    cells = ""
+    cells, row = "", []
     for i, v in enumerate(voci):
-        var = str(v.get("variazione") or "")
-        vc = C["up"] if var.strip().startswith("+") else C["down"] if var.strip()[:1] in "-−–" else C["fog"]
-        cells += (f'<td width="33%" valign="top" style="padding:8px;{F}"><div style="font-size:12px;color:{C["fog"]};font-weight:600">{e(v["nome"])}</div>'
-                  f'<div style="font-size:16px;font-weight:800;color:{C["ink"]}">{e(v["valore"])}</div><div style="font-size:13px;font-weight:700;color:{vc}">{e(var)}</div></td>')
-        if i % 3 == 2 and i < len(voci) - 1: cells += "</tr><tr>"
-    return (f'<tr><td style="padding:18px 0 10px;{F}font-size:21px;font-weight:800;color:{C["ink"]}">I numeri</td></tr>'
-            f'<tr><td><table width="100%" cellpadding="0" cellspacing="0" style="background:{C["card"]};border:1px solid {C["line"]};border-radius:16px"><tr>{cells}</tr></table>'
-            f'<div style="{F}font-size:12px;color:{C["fog"]};margin-top:6px">{e(d["numeri"].get("aggiornato",""))}</div></td></tr>')
+        var = str(v.get("variazione") or "").strip()
+        su, giu = var.startswith("+"), var[:1] in "-−–"
+        vc = C["up"] if su else C["down"] if giu else C["fog"]
+        freccia = "▲ " if su else "▼ " if giu else ""
+        row.append(f'<td width="33%" valign="top" style="background:{C["s2"]};border-radius:12px;padding:10px 11px;{F}">'
+                   f'<div style="font-size:12px;color:{C["fog"]};font-weight:600">{e(v["nome"])}</div>'
+                   f'<div style="font-size:15.5px;line-height:1.25;font-weight:800;color:{C["ink"]};margin-top:3px">{e(v["valore"])}</div>'
+                   + (f'<div style="font-size:13px;font-weight:700;color:{vc};margin-top:3px">{freccia}{e(var.lstrip("+-−–"))}</div>' if var else "")
+                   + '</td>')
+        if len(row) == 3 or i == len(voci) - 1:
+            while len(row) < 3: row.append('<td width="33%">&nbsp;</td>')
+            cells += '<tr>' + '<td width="8" style="font-size:0">&nbsp;</td>'.join(row) + '</tr><tr><td colspan="5" height="8" style="font-size:0;line-height:0">&nbsp;</td></tr>'
+            row = []
+    return (titolo("I numeri", C["ink"], (d["numeri"].get("aggiornato") or ""))
+            + f'<tr><td><table width="100%" cellpadding="0" cellspacing="0">{cells}</table></td></tr>')
 
 def podcast(d):
     p = d.get("podcast") or {}
     caps = p.get("capitoli") or []
     if not caps: return ""
     w = sum(len((c.get("testo") or "").split()) for c in caps)
-    return (f'<tr><td style="padding:14px 0 0"><a href="{SITO}/#podcast" style="text-decoration:none">'
-            f'<table width="100%" cellpadding="0" cellspacing="0" style="background:#030504;border-radius:16px"><tr><td style="padding:16px 18px">'
-            f'<div style="{F}font-size:12px;font-weight:800;color:#C6FF34">IL PODCAST DI OGGI · {max(1, round(w/150))} MIN</div>'
-            f'<div style="{F}font-size:18px;font-weight:800;color:#fff;margin-top:6px">▶ {e(p.get("titolo",""))}</div>'
-            f'<div style="{F}font-size:13.5px;color:#B9C2BC;margin-top:4px">{e(" · ".join(c["titolo"] for c in caps[:5]))}</div>'
+    return (f'<tr><td style="padding:16px 0 0"><a href="{SITO}/#podcast" style="text-decoration:none">'
+            f'<table width="100%" cellpadding="0" cellspacing="0" style="background:{C["card"]};border:1px solid {C["line"]};border-radius:18px"><tr>'
+            f'<td width="64" valign="middle" style="padding:16px 0 16px 16px"><table cellpadding="0" cellspacing="0"><tr><td width="48" height="48" align="center" valign="middle" '
+            f'style="background:{C["ai"]};border-radius:24px;{F}font-size:18px;color:{C["bg"]}">▶</td></tr></table></td>'
+            f'<td valign="middle" style="padding:14px 16px 14px 4px;{F}">'
+            f'<div style="font-size:12.5px;font-weight:700;color:{C["ai"]}">Il podcast di oggi · {max(1, round(w/150))} min</div>'
+            f'<div style="font-size:17px;line-height:1.3;font-weight:800;color:{C["ink"]};margin-top:3px">{e(p.get("titolo",""))}</div>'
+            f'<div style="font-size:13px;line-height:1.45;color:{C["fog"]};margin-top:4px">{e(" · ".join(c["titolo"] for c in caps[:5]))}</div>'
             f'</td></tr></table></a></td></tr>')
 
 def attualita(d):
     v = (d.get("attualita") or {}).get("voci") or []
     if not v: return ""
-    rows = "".join(f'<tr><td style="padding:7px 0;border-top:1px solid {C["line"]};{F}font-size:14px;line-height:1.4;color:{C["ink"]}">'
-                   f'<span style="color:{C["fog"]};font-weight:700">{e(x.get("categoria",""))}</span> &nbsp;<a href="{e(x.get("url",""))}" style="color:{C["ink"]};text-decoration:none"><b>{e(x["titolo"])}</b></a><br>'
-                   f'<span style="color:{C["fog"]}">{e(x.get("in_breve",""))}</span></td></tr>' for x in v)
-    return (f'<tr><td style="padding:18px 0 6px;{F}font-size:21px;font-weight:800;color:{C["ink"]}">Di cosa si parla oggi</td></tr>'
-            f'<tr><td><table width="100%" cellpadding="0" cellspacing="0" style="background:{C["card"]};border:1px solid {C["line"]};border-radius:16px"><tr><td style="padding:6px 16px">'
+    rows = "".join(f'<tr><td style="padding:12px 0;{"border-top:1px solid "+C["line"]+";" if i else ""}{F}font-size:14px;line-height:1.45;color:{C["ink"]}">'
+                   + (f'<span style="display:inline-block;background:{C["s2"]};color:{C["fog"]};font-size:12px;font-weight:700;border-radius:99px;padding:2px 9px">{e(x["categoria"])}</span><br>' if x.get("categoria") else "")
+                   + f'<a href="{e(x.get("url",""))}" style="color:{C["ink"]};text-decoration:none"><b style="font-size:15px">{e(x["titolo"])}</b></a><br>'
+                   f'<span style="color:{C["fog"]}">{e(x.get("in_breve",""))}</span></td></tr>' for i, x in enumerate(v))
+    return (titolo("Di cosa si parla oggi", C["fog"])
+            + f'<tr><td><table width="100%" cellpadding="0" cellspacing="0" style="background:{C["card"]};border:1px solid {C["line"]};border-radius:18px"><tr><td style="padding:4px 16px">'
             f'<table width="100%" cellpadding="0" cellspacing="0">{rows}</table></td></tr></table></td></tr>')
 
 def verifica(d):
@@ -114,26 +155,31 @@ def build(d):
     ai = sorted([n for n in d["notizie"] if n["sezione"] == "ai"], key=imp)[:5]
     eco = sorted([n for n in d["notizie"] if n["sezione"] == "economia"], key=imp)[:5]
     top = sorted(d["notizie"], key=imp)[0]
-    body = f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+    body = f'''<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><meta name="supported-color-schemes" content="dark"></head>
 <body style="margin:0;background:{C["bg"]}"><table width="100%" cellpadding="0" cellspacing="0" style="background:{C["bg"]}"><tr><td align="center" style="padding:0 0 28px">
 <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px">
-<tr><td style="background:{C["ink"]};padding:26px 22px;border-radius:0 0 22px 22px">
-<div style="{F}font-size:30px;font-weight:800;line-height:1"><span style="color:#FFFFFF">Eco</span><span style="color:#C6FF34">AI</span></div>
-<div style="{F}font-size:15px;color:#C9D2E6;margin-top:8px">{data}: {len(d["notizie"])} notizie di AI ed economia. Qui le più importanti, spiegate semplici. Nell'app scegli tu quanto approfondire.</div>
+<tr><td style="padding:26px 18px 6px">
+<table cellpadding="0" cellspacing="0"><tr>
+<td valign="middle"><img src="{SITO}/icon-96.png" width="36" height="36" alt="" style="display:block;border-radius:10px"></td>
+<td valign="middle" style="padding-left:10px;{F}font-size:24px;font-weight:800;line-height:1"><span style="color:{C["ink"]}">Eco</span><span style="color:{C["ai"]}">AI</span></td>
+</tr></table>
+<div style="{F}font-size:14px;font-weight:600;color:{C["fog"]};margin-top:18px">{data}</div>
+<div style="{F}font-size:27px;line-height:1.18;font-weight:800;color:{C["ink"]};margin-top:4px">{e(top["titolo"])}</div>
+<div style="{F}font-size:14.5px;line-height:1.5;color:{C["fog"]};margin-top:8px">{len(d["notizie"])} {"notizia" if len(d["notizie"]) == 1 else "notizie"} di AI ed economia: qui le più importanti, spiegate semplici. Nell'app scegli tu quanto approfondire.</div>
 </td></tr>
-<tr><td style="padding:8px 14px 0"><table width="100%" cellpadding="0" cellspacing="0">
+<tr><td style="padding:0 12px"><table width="100%" cellpadding="0" cellspacing="0">
 {podcast(d)}
-{section("Intelligenza artificiale", ai)}
-{section("Economia", eco)}
+{section("Intelligenza artificiale", ai, C["ai"])}
+{section("Economia", eco, C["eco"])}
 {numbers(d)}
 {attualita(d)}
-<tr><td align="center" style="padding:22px 0 0"><table cellpadding="0" cellspacing="0"><tr><td style="background:{C["ink"]};border-radius:99px">
-<a href="{SITO}" style="display:inline-block;padding:14px 26px;{F}font-size:15px;font-weight:800;color:#fff;text-decoration:none">Apri EcoAI: tutte le notizie, livelli 1-10</a></td></tr></table>
-<div style="{F}font-size:12px;color:{C["fog"]};margin-top:12px">Ogni notizia ha il link alla fonte originale.{verifica(d)}</div></td></tr>
+<tr><td align="center" style="padding:24px 0 0"><table cellpadding="0" cellspacing="0"><tr><td style="background:{C["ai"]};border-radius:99px">
+<a href="{SITO}" style="display:inline-block;padding:14px 26px;{F}font-size:15px;font-weight:800;color:{C["bg"]};text-decoration:none">Apri EcoAI: tutte le notizie, livelli 1-10</a></td></tr></table>
+<div style="{F}font-size:12px;line-height:1.5;color:{C["fog"]};margin-top:12px;padding:0 12px">Ogni notizia ha il link alla fonte originale.{verifica(d)}</div></td></tr>
 </table></td></tr></table></td></tr></table></body></html>'''
     subject = f"EcoAI · {data} · {top['titolo']}"
     text = f"EcoAI, {data}\n\n" + "\n\n".join(f"{n['titolo']}\n" + ("\n".join(f"{et}: {t}" for et, t in parti_testo(n)) or n['livelli']['1']) + f"\n{n['url']}" for n in ai + eco) + f"\n\nTutte le notizie: {SITO}"
-    return subject, body, text
+    return subject, gmail_safe(body), text
 
 if __name__ == "__main__":
     d = json.loads(pathlib.Path(sys.argv[1]).read_text(encoding="utf-8"))
