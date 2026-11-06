@@ -391,8 +391,8 @@
    "id": "ai-03",
    "sezione": "ai",
    "tag": "Chip",
-   "titolo": "600.000 chip Nvidia bloccati a Hong Kong: la Cina non li fa entrare",
-   "il_punto": "L'America ha finalmente dato il permesso di vendere questi chip alla Cina. Ora è Pechino a dire di no: vuole che le sue aziende usino chip cinesi.",
+   "titolo": "600.000 chip Nvidia bloccati a Hong Kong: la Cina non dà il via libera",
+   "il_punto": "L'America ha finalmente dato il permesso di vendere questi chip alla Cina. Ora è Pechino a non approvare ancora grandi importazioni: vuole che le sue aziende usino chip cinesi.",
    "sottotitolo": "Secondo Reuters, Pechino non autorizza grandi importazioni di chip H200 e sul mercato non ufficiale i server costano il triplo di un anno fa.",
    "fonte": "Reuters (via Global Banking & Finance Review)",
    "url": "https://www.globalbankingandfinance.com/exclusive-nvidia-chips-pile-up-hong-kong-china-withholds/",
@@ -495,8 +495,8 @@
     }
    ],
    "en": {
-    "titolo": "600,000 Nvidia chips stuck in Hong Kong: China does not let them in",
-    "il_punto": "America finally allowed these chips to be sold to China. Now Beijing says no: it wants its companies to use Chinese chips.",
+    "titolo": "600,000 Nvidia chips stuck in Hong Kong: China has not approved them yet",
+    "il_punto": "America finally allowed these chips to be sold to China. Now Beijing has not yet approved large imports: it wants its companies to use Chinese chips.",
     "sottotitolo": "According to Reuters, Beijing does not approve large imports of H200 chips, and on the grey market servers cost three times more than a year ago.",
     "perche_conta": "It is a real example of how politics and export rules decide who can build AI and at what price: the same kind of limits that compliance teams check every day.",
     "livelli": {
