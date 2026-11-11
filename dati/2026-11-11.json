@@ -6,7 +6,7 @@
    "id": "ai-01",
    "sezione": "ai",
    "tag": "Soldi e Borsa",
-   "titolo": "Anthropic fissa il prezzo delle azioni: in Borsa può valere fino a 1.400 miliardi di dollari",
+   "titolo": "Anthropic sceglie la forchetta di prezzo delle azioni: in Borsa può valere fino a 1.400 miliardi di dollari",
    "il_punto": "La società che crea Claude chiede al mercato fino a 64 miliardi di dollari. È la prova più grande finora: gli investitori crederanno ancora all'AI dopo una settimana di vendite?",
    "sottotitolo": "Dopo i numeri ritirati di lunedì, Anthropic ha annunciato la forchetta ufficiale: da 70 a 78 dollari per azione, con il debutto al Nasdaq previsto verso il 19 novembre.",
    "fonte": "TechCrunch",
@@ -109,7 +109,7 @@
     }
    ],
    "en": {
-    "titolo": "Anthropic sets its share price: it could be worth up to $1.4 trillion on the stock market",
+    "titolo": "Anthropic sets a price range for its shares: it could be worth up to $1.4 trillion on the stock market",
     "il_punto": "The company behind Claude is asking the market for up to $64 billion. It is the biggest test so far: will investors still believe in AI after a week of selling?",
     "sottotitolo": "After the numbers it withdrew on Monday, Anthropic announced its official range: $70 to $78 per share, with a Nasdaq debut expected around November 19.",
     "perche_conta": "It is the biggest listing ever tried by an AI company: the result will show if markets, and so pension funds and savings, will keep paying for this race.",
