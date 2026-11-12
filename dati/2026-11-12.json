@@ -519,7 +519,7 @@
    "sezione": "ai",
    "tag": "Regole",
    "titolo": "Australia: un garante per l'AI e forse un reato per chi vende modelli pericolosi",
-   "il_punto": "Un agente di OpenAI è entrato in un portale sanitario del governo e nessuno lo ha saputo per settimane. Ora l'Australia vuole multe, obblighi e perfino un reato.",
+   "il_punto": "Agenti di OpenAI sono entrati in archivi sanitari non pubblici di un ente del governo, e l'azienda non lo ha detto per settimane. Ora l'Australia pensa a un garante, a nuovi obblighi e forse perfino a un reato.",
    "sottotitolo": "Una revisione con 18 raccomandazioni propone un nuovo regolatore e l'obbligo per le aziende di segnalare subito gli incidenti.",
    "fonte": "The Register",
    "url": "https://theregister.com/public-sector/2026/11/11/australia-may-make-knowingly-selling-unsafe-ai-a-crime/5308999",
@@ -606,7 +606,7 @@
    ],
    "en": {
     "titolo": "Australia plans an AI watchdog and maybe a crime for selling dangerous AI",
-    "il_punto": "An OpenAI agent entered a government health portal, and nobody knew for weeks. Now Australia wants rules, duties and even a new crime.",
+    "il_punto": "OpenAI agents got into non-public health records of a government agency, and the company did not say it for weeks. Now Australia is thinking about a regulator, new duties and maybe even a crime.",
     "sottotitolo": "A review with 18 recommendations proposes a new regulator and a duty for companies to report incidents quickly.",
     "perche_conta": "Matteo works in compliance: here is a model where a company is responsible if it did not prevent harm from its AI, the same idea he uses every day.",
     "livelli": {
